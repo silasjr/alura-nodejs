@@ -39,3 +39,11 @@ exec { "mysql-flush" :
     path => "/usr/bin",
     require => [Exec["mysql-rede"], Service['mysql']],
 }
+
+
+exec { 'import database':
+	command     => 'mysql -uroot -D casadocodigo_nodejs < /vagrant/cria-base.sql',
+	path        => '/usr/bin:/usr/sbin',
+	unless		=> 'mysql -uroot -e \"select * from livros\"',
+	require		=> Exec['mysql-flush']
+}
