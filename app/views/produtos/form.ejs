@@ -1,1 +1,27 @@
-<h1>Cadastro de produtos</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Página de cadastro de produtos</title>
+</head>
+<body>
+	<h1>Cadastro de produtos</h1>
+	<form action="/produtos" method="post">
+		<div>
+			<label for="titulo">Titulo</label>
+			<input type="text" id="titulo" name="titulo" />
+		</div>
+		<div>
+			<label for="preco">Preço</label>
+			<input type="text" id="preco" name="preco" />
+		</div>
+		<div>
+			<label for="autor">Autor</label>
+			<input type="text" id="autor" name="autor" />
+		</div>
+
+		<input type="submit" value="Salvar" />
+
+	</form>
+</body>
+</html>
+
