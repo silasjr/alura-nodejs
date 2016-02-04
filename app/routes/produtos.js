@@ -8,7 +8,7 @@ module.exports = function(app) {
 		produtoDAO.lista(function(err, results){
 			res.format({
 				html: function() {
-					res.render("produtos/lista", {lista: results});		
+					res.render("produtos/lista", {lista: results});
 				},
 				json: function() {
 					res.json(results);
