@@ -1,4 +1,4 @@
-CREATE TABLE if not exists casadocodigo_nodejs.livros (
+CREATE TABLE if not exists livros (
 	id BIGINT NOT NULL AUTO_INCREMENT ,
 	titulo varchar(100) NULL,
 	preco double NULL,
@@ -7,7 +7,7 @@ CREATE TABLE if not exists casadocodigo_nodejs.livros (
 );
 
 
-INSERT INTO casadocodigo_nodejs.livros
+INSERT INTO livros
 (titulo, preco, autor)
 VALUES('NodeJS And Express', 29.9, 'Silas'),
 ('JavaEE 7', 69.9, 'Silas'),

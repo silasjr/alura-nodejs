@@ -1,11 +1,14 @@
 module.exports = function(app) {
 
-	var listProduto = function(req, res){
+	var listProduto = function(req, res, next){
 		var connection = app.infra.connectionFactory();
 		// cria um novo contexto de uso 'this'
 		var produtoDAO = new app.infra.ProdutosDAO(connection);
 
 		produtoDAO.lista(function(err, results){
+			if (err) {
+				return next(err);
+			}
 			res.format({
 				html: function() {
 					res.render("produtos/lista", {lista: results});

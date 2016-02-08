@@ -22,6 +22,13 @@ exec { 'database casadocodigo_nodejs':
 	require => Service["mysql"],
 }
 
+exec { 'database casadocodigo_nodejs_test':
+	command      => 'mysqladmin -u root create casadocodigo_nodejs_test',
+	path        => '/usr/bin',
+	unless     => "mysql -u root casadocodigo_nodejs_test",
+	require => Service["mysql"],
+}
+
 exec { 'mysql-address':
 	command      => 'sudo sed -i "s/^bind-address/#bind-address/" /etc/mysql/my.cnf',
 	path        => '/usr/bin',
@@ -43,6 +50,13 @@ exec { "mysql-flush" :
 
 exec { 'import database':
 	command     => 'mysql -uroot -D casadocodigo_nodejs < /vagrant/cria-base.sql',
+	path        => '/usr/bin:/usr/sbin',
+	unless		=> 'mysql -uroot -e \"select * from livros\"',
+	require		=> Exec['mysql-flush']
+}
+
+exec { 'import database_test':
+	command     => 'mysql -uroot -D casadocodigo_nodejs_test < /vagrant/cria-base.sql',
 	path        => '/usr/bin:/usr/sbin',
 	unless		=> 'mysql -uroot -e \"select * from livros\"',
 	require		=> Exec['mysql-flush']
